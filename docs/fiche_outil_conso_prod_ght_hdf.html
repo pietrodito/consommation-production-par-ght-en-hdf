@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conso / prod par GHT HDF</title>
+<style>/*! tailwindcss v4.1.11 | MIT License | https://tailwindcss.com */
+@layer properties{@supports (((-webkit-hyphens:none)) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from red r g b)))){*,:before,:after,::backdrop{--tw-border-style:solid;--tw-font-weight:initial;--tw-ordinal:initial;--tw-slashed-zero:initial;--tw-numeric-figure:initial;--tw-numeric-spacing:initial;--tw-numeric-fraction:initial;--tw-leading:initial}}}@layer theme{:root,:host{--font-sans:"Century Gothic","URW Gothic","Avenir",sans-serif;--font-mono:Consolas,"Courier New",monospace;--color-white:#fff;--spacing:.25rem;--text-base:1rem;--text-base--line-height:calc(1.5/1);--font-weight-normal:400;--font-weight-bold:700;--leading-tight:1.25;--leading-normal:1.5;--radius-sm:.25rem;--radius-md:.375rem;--radius-lg:.5rem;--default-font-family:var(--font-sans);--default-mono-font-family:var(--font-mono);--color-navy:#123880;--color-cyan:#1ba7d8;--color-vert:#08b650;--color-orange:#e67e22;--color-orange-texte:#8a4a0f;--color-texte:#1b1b1b;--color-gris:#5c6b7a;--color-panneau:#eaf4fa;--color-filet:#d9e3eb;--color-code:#f4f6f8;--color-bande:#f7fafc}}@layer base{*,:after,:before,::backdrop{box-sizing:border-box;border:0 solid;margin:0;padding:0}::file-selector-button{box-sizing:border-box;border:0 solid;margin:0;padding:0}html,:host{-webkit-text-size-adjust:100%;tab-size:4;line-height:1.5;font-family:var(--default-font-family,ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji");font-feature-settings:var(--default-font-feature-settings,normal);font-variation-settings:var(--default-font-variation-settings,normal);-webkit-tap-highlight-color:transparent}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:var(--default-mono-font-family,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace);font-feature-settings:var(--default-mono-font-feature-settings,normal);font-variation-settings:var(--default-mono-font-variation-settings,normal);font-size:1em}small{font-size:80%}sub,sup{vertical-align:baseline;font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}:-moz-focusring{outline:auto}progress{vertical-align:baseline}summary{display:list-item}ol,ul,menu{list-style:none}img,svg,video,canvas,audio,iframe,embed,object{vertical-align:middle;display:block}img,video{max-width:100%;height:auto}button,input,select,optgroup,textarea{font:inherit;font-feature-settings:inherit;font-variation-settings:inherit;letter-spacing:inherit;color:inherit;opacity:1;background-color:#0000;border-radius:0}::file-selector-button{font:inherit;font-feature-settings:inherit;font-variation-settings:inherit;letter-spacing:inherit;color:inherit;opacity:1;background-color:#0000;border-radius:0}:where(select:is([multiple],[size])) optgroup{font-weight:bolder}:where(select:is([multiple],[size])) optgroup option{padding-inline-start:20px}::file-selector-button{margin-inline-end:4px}::placeholder{opacity:1}@supports (not ((-webkit-appearance:-apple-pay-button))) or (contain-intrinsic-size:1px){::placeholder{color:currentColor}@supports (color:color-mix(in lab, red, red)){::placeholder{color:color-mix(in oklab,currentcolor 50%,transparent)}}}textarea{resize:vertical}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-date-and-time-value{min-height:1lh;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-datetime-edit{padding-block:0}::-webkit-datetime-edit-year-field{padding-block:0}::-webkit-datetime-edit-month-field{padding-block:0}::-webkit-datetime-edit-day-field{padding-block:0}::-webkit-datetime-edit-hour-field{padding-block:0}::-webkit-datetime-edit-minute-field{padding-block:0}::-webkit-datetime-edit-second-field{padding-block:0}::-webkit-datetime-edit-millisecond-field{padding-block:0}::-webkit-datetime-edit-meridiem-field{padding-block:0}:-moz-ui-invalid{box-shadow:none}button,input:where([type=button],[type=reset],[type=submit]){appearance:button}::file-selector-button{appearance:button}::-webkit-inner-spin-button{height:auto}::-webkit-outer-spin-button{height:auto}[hidden]:where(:not([hidden=until-found])){display:none!important}body{background-color:var(--color-white);font-family:var(--font-sans);--tw-leading:var(--leading-normal);font-size:15px;line-height:var(--leading-normal);color:var(--color-texte)}h1{--tw-leading:var(--leading-tight);font-size:27px;line-height:var(--leading-tight);--tw-font-weight:var(--font-weight-bold);font-weight:var(--font-weight-bold);color:var(--color-navy)}h2{margin-top:calc(var(--spacing)*9);margin-bottom:calc(var(--spacing)*3);background-color:var(--color-navy);padding-inline:calc(var(--spacing)*3);padding-block:calc(var(--spacing)*1.5);--tw-font-weight:var(--font-weight-bold);font-size:18px;font-weight:var(--font-weight-bold);color:var(--color-white);border-radius:.25rem}h3{margin-top:calc(var(--spacing)*4);margin-bottom:calc(var(--spacing)*1.5);font-size:var(--text-base);line-height:var(--tw-leading,var(--text-base--line-height));--tw-font-weight:var(--font-weight-bold);font-weight:var(--font-weight-bold);color:var(--color-navy)}p{margin-block:calc(var(--spacing)*1.5)}ul{margin-block:calc(var(--spacing)*1.5);padding-left:calc(var(--spacing)*5);list-style-type:disc}ol{margin-block:calc(var(--spacing)*1.5);padding-left:calc(var(--spacing)*5);list-style-type:decimal}li{margin-block:calc(var(--spacing)*.5)}a{color:var(--color-navy);text-decoration-line:underline;-webkit-text-decoration-color:var(--color-filet);-webkit-text-decoration-color:var(--color-filet);text-decoration-color:var(--color-filet);text-underline-offset:2px}code{border-radius:var(--radius-sm);background-color:var(--color-code);padding-inline:calc(var(--spacing)*1);font-family:var(--font-mono);font-size:12.5px}pre{margin-block:calc(var(--spacing)*2);border-radius:var(--radius-md);border-style:var(--tw-border-style);border-width:1px;border-color:var(--color-filet);background-color:var(--color-code);padding-inline:calc(var(--spacing)*3);padding-block:calc(var(--spacing)*2);font-family:var(--font-mono);white-space:pre;font-size:12.5px;overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13.5px}th{background-color:var(--color-navy);padding-inline:calc(var(--spacing)*2.5);padding-block:calc(var(--spacing)*1.5);text-align:left;vertical-align:bottom;--tw-font-weight:var(--font-weight-normal);font-weight:var(--font-weight-normal);color:var(--color-white)}td{border-bottom-style:var(--tw-border-style);border-bottom-width:1px;border-color:var(--color-filet);padding-inline:calc(var(--spacing)*2.5);padding-block:calc(var(--spacing)*1.5);vertical-align:top}tbody tr:nth-child(2n) td{background-color:var(--color-bande)}}@layer components;@layer utilities{.m-0{margin:calc(var(--spacing)*0)}.mx-auto{margin-inline:auto}.mt-0{margin-top:calc(var(--spacing)*0)}.mt-1{margin-top:calc(var(--spacing)*1)}.mb-4{margin-bottom:calc(var(--spacing)*4)}.block{display:block}.grid{display:grid}.table{display:table}.h-auto{height:auto}.w-\[7\%\]{width:7%}.w-\[11\%\]{width:11%}.w-\[12\%\]{width:12%}.w-\[13\%\]{width:13%}.w-\[15\%\]{width:15%}.w-\[17\%\]{width:17%}.w-\[18\%\]{width:18%}.w-\[19\%\]{width:19%}.w-\[20\%\]{width:20%}.w-\[22\%\]{width:22%}.w-\[24\%\]{width:24%}.w-\[28\%\]{width:28%}.w-\[30\%\]{width:30%}.w-full{width:100%}.max-w-\[440px\]{max-width:440px}.max-w-\[900px\]{max-width:900px}.max-w-\[1180px\]{max-width:1180px}.min-w-\[620px\]{min-width:620px}.min-w-\[640px\]{min-width:640px}.table-fixed{table-layout:fixed}.columns-1{columns:1}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gap-4{gap:calc(var(--spacing)*4)}.gap-8{gap:calc(var(--spacing)*8)}.overflow-x-auto{overflow-x:auto}.rounded-lg{border-radius:var(--radius-lg)}.border{border-style:var(--tw-border-style);border-width:1px}.border-t-4{border-top-style:var(--tw-border-style);border-top-width:4px}.border-filet{border-color:var(--color-filet)}.border-t-cyan{border-top-color:var(--color-cyan)}.border-t-navy{border-top-color:var(--color-navy)}.border-t-orange{border-top-color:var(--color-orange)}.border-t-vert{border-top-color:var(--color-vert)}.bg-panneau{background-color:var(--color-panneau)}.bg-panneau\!{background-color:var(--color-panneau)!important}.p-2{padding:calc(var(--spacing)*2)}.px-4{padding-inline:calc(var(--spacing)*4)}.py-3{padding-block:calc(var(--spacing)*3)}.pt-6{padding-top:calc(var(--spacing)*6)}.pb-12{padding-bottom:calc(var(--spacing)*12)}.text-right{text-align:right}.text-\[13px\]{font-size:13px}.font-bold{--tw-font-weight:var(--font-weight-bold);font-weight:var(--font-weight-bold)}.text-gris{color:var(--color-gris)}.text-navy{color:var(--color-navy)}.text-orange-texte{color:var(--color-orange-texte)}.tabular-nums{--tw-numeric-spacing:tabular-nums;font-variant-numeric:var(--tw-ordinal,)var(--tw-slashed-zero,)var(--tw-numeric-figure,)var(--tw-numeric-spacing,)var(--tw-numeric-fraction,)}@media (min-width:48rem){.md\:w-\[70\%\]{width:70%}.md\:columns-2{columns:2}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media print{.print\:mb-3{margin-bottom:calc(var(--spacing)*3)}.print\:block{display:block}.print\:w-\[70\%\]{width:70%}.print\:min-w-0{min-width:calc(var(--spacing)*0)}.print\:columns-2{columns:2}}}@media print{@page{size:A4;margin:12mm 11mm}body{font-size:12.5px}table{font-size:11.5px}h2{break-after:avoid}tr,.carte,.encart,.schema,.tete{break-inside:avoid}}@property --tw-border-style{syntax:"*";inherits:false;initial-value:solid}@property --tw-font-weight{syntax:"*";inherits:false}@property --tw-ordinal{syntax:"*";inherits:false}@property --tw-slashed-zero{syntax:"*";inherits:false}@property --tw-numeric-figure{syntax:"*";inherits:false}@property --tw-numeric-spacing{syntax:"*";inherits:false}@property --tw-numeric-fraction{syntax:"*";inherits:false}@property --tw-leading{syntax:"*";inherits:false}</style>
+</head>
+<body>
+<main class="max-w-[1180px] mx-auto px-4 pt-6 pb-12">
+
+<div class="tete">
+  <h1>Consommation et production MCO par GHT en Hauts-de-France : l'outil de la PDH</h1>
+  <p class="text-gris mt-1 mb-4">Fiche de lecture proposée par le DIM du Centre Hospitalier de Dunkerque · 6 novembre 2026 · établie par lecture du code R, du modèle Power BI, des référentiels Excel et des CSV publiés dans les dépôts <code>consommation-production-par-ght-en-hdf</code>, <code>atihdf</code> et <code>conso_prod_filieres</code>, sans exécution sur la PDH</p>
+
+  <div class="encart bg-panneau border border-filet rounded-lg px-4 py-3">
+    <p class="font-bold text-navy m-0">En bref</p>
+    <ul>
+      <li>Outil destiné aux <b>DIM de territoire</b>, à exécuter dans la <b>bulle de données de l'ATIH</b> (Plateforme des Données Hospitalières : RStudio + Teradata)</li>
+      <li>Mesure, pour chacun des <b>14 GHT des Hauts-de-France</b>, où les habitants sont hospitalisés (<b>GHT de consommation</b> = domicile du patient) et d'où viennent les patients des établissements (<b>GHT de production</b> = établissement), en <b>MCO</b>, par âge, type d'hospitalisation, CAS, groupe de planification et filière</li>
+      <li>Trois briques : le package R <code>atihdf</code> (boîte à outils PDH) → le projet R <code>conso_prod_filieres</code> (extraction, agrégation, CSV) → le modèle Power BI <code>.pbit</code> de ce dépôt (carte, matrice, segments)</li>
+      <li>Le dépôt <code>consommation-production-par-ght-en-hdf</code> contient le <b>README, une capture et le modèle Power BI</b> ; le code est dans les dépôts <code>atihdf</code> et <code>conso_prod_filieres</code></li>
+      <li>Les résultats <b>2024 et 2025 déjà calculés</b> sont publiés (<code>conso_prod_filieres/out/</code>, agrégés et masqués) : le rapport peut s'ouvrir sans accès à la PDH</li>
+    </ul>
+  </div>
+</div>
+
+<h3>Sommaire</h3>
+<ol class="columns-1 md:columns-2 print:columns-2 gap-8">
+  <li><a href="#schema">Schéma d'ensemble</a></li>
+  <li><a href="#depots">Les trois dépôts</a></li>
+  <li><a href="#usage">À quoi ça sert</a></li>
+  <li><a href="#dependances">Dépendances</a></li>
+  <li><a href="#traitement">Ce que fait le traitement R</a></li>
+  <li><a href="#variables">Le fichier produit (CSV)</a></li>
+  <li><a href="#filieres">Filières</a></li>
+  <li><a href="#secret">Secret statistique : le masquage</a></li>
+  <li><a href="#powerbi">Le rapport Power BI</a></li>
+  <li><a href="#ght">Les 14 GHT et l'exemple du Dunkerquois</a></li>
+  <li><a href="#mode">Mode d'emploi</a></li>
+  <li><a href="#atihdf">Le reste du package atihdf</a></li>
+  <li><a href="#vigilance">Limites et points de vigilance</a></li>
+</ol>
+
+<!-- ===================================================================== -->
+<h2 id="schema">1. Schéma d'ensemble</h2>
+<div class="schema border border-filet rounded-lg p-2 overflow-x-auto">
+<svg class="block w-full max-w-[900px] mx-auto min-w-[620px] print:min-w-0 h-auto" viewBox="0 0 760 562" role="img" aria-label="Chaîne de traitement : vues Teradata et référentiels Excel dans la bulle ATIH, package atihdf et projet conso_prod_filieres sous RStudio, CSV agrégés, puis modèle Power BI et rapport sur le poste de travail">
+  <defs>
+    <marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#123880"/></marker>
+  </defs>
+  <g font-family="Century Gothic, URW Gothic, Avenir, sans-serif" fill="#1B1B1B">
+    <!-- Bulle ATIH -->
+    <text x="12" y="20" font-size="13" font-weight="bold" fill="#1BA7D8">BULLE DE DONNÉES ATIH (PDH, accès nominatif LDAP)</text>
+    <rect x="6" y="30" width="748" height="326" rx="12" fill="none" stroke="#1BA7D8" stroke-width="2" stroke-dasharray="7 5"/>
+
+    <!-- Teradata -->
+    <rect x="22" y="46" width="240" height="174" rx="8" fill="#EAF4FA" stroke="#1BA7D8" stroke-width="2"/>
+    <text x="142" y="70" text-anchor="middle" font-size="15" font-weight="bold" fill="#123880">Teradata (vues ATIH)</text>
+    <g font-size="12.5">
+      <text x="34" y="95">· PRD_VUE_MCO_&lt;année&gt;.FIXE</text>
+      <text x="34" y="111" fill="#5C6B7A">  1 ligne par RSA ; DIAG, UM, ACTE</text>
+      <text x="34" y="126" fill="#5C6B7A">  connectées, non utilisées</text>
+      <text x="34" y="150">· PRD_VUE_NOMGEN</text>
+      <text x="34" y="166" fill="#5C6B7A">  code géo PMSI ↔ communes, pop.</text>
+      <text x="34" y="190">· PRD_VUE_NOMPMSI</text>
+      <text x="34" y="206" fill="#5C6B7A">  GHM → CAS, groupe de planif.</text>
+    </g>
+
+    <!-- Référentiels -->
+    <rect x="22" y="232" width="240" height="110" rx="8" fill="#F7FAFC" stroke="#5C6B7A"/>
+    <text x="142" y="256" text-anchor="middle" font-size="15" font-weight="bold" fill="#123880">Référentiels Excel</text>
+    <g font-size="12.5">
+      <text x="34" y="280">· ght_codegeo.xlsx</text>
+      <text x="34" y="296" fill="#5C6B7A">  3 818 communes → 14 GHT</text>
+      <text x="34" y="318">· raisons_sociales_…_GPS.xlsx</text>
+      <text x="34" y="334" fill="#5C6B7A">  330 sites principaux → GHT</text>
+    </g>
+
+    <!-- RStudio -->
+    <line x1="262" y1="133" x2="288" y2="133" stroke="#123880" stroke-width="2" marker-end="url(#fl)"/>
+    <line x1="262" y1="287" x2="288" y2="287" stroke="#123880" stroke-width="2" marker-end="url(#fl)"/>
+    <rect x="290" y="46" width="252" height="296" rx="8" fill="#FFFFFF" stroke="#123880" stroke-width="2"/>
+    <text x="416" y="70" text-anchor="middle" font-size="15" font-weight="bold" fill="#123880">RStudio de la PDH</text>
+    <rect x="304" y="82" width="224" height="110" rx="6" fill="#EEF2F9" stroke="#D9E3EB"/>
+    <text x="416" y="102" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#123880">package atihdf</text>
+    <g font-size="12" text-anchor="middle">
+      <text x="416" y="122">connexion Teradata, ct()</text>
+      <text x="416" y="138">nettoie_séjours(), filtre HDF</text>
+      <text x="416" y="154">HC / HDJ / séances, CAS, GP</text>
+      <text x="416" y="178" fill="#5C6B7A">+ DMS, valo, taux de recours</text>
+    </g>
+    <rect x="304" y="202" width="224" height="128" rx="6" fill="#EEF2F9" stroke="#D9E3EB"/>
+    <text x="416" y="222" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#123880">conso_prod_filieres</text>
+    <g font-size="12">
+      <text x="316" y="244">lanceur.R : 2024 → 2025</text>
+      <text x="316" y="264">00 séjours, GHT, variables</text>
+      <text x="316" y="281">01 recopie de table</text>
+      <text x="316" y="298">10 filière neuro. chronique</text>
+      <text x="316" y="315">41 agrégation → CSV</text>
+    </g>
+
+    <!-- CSV -->
+    <line x1="542" y1="187" x2="572" y2="187" stroke="#123880" stroke-width="2" marker-end="url(#fl)"/>
+    <rect x="574" y="120" width="164" height="134" rx="8" fill="#E7F7EE" stroke="#08B650" stroke-width="2"/>
+    <text x="656" y="144" text-anchor="middle" font-size="15" font-weight="bold" fill="#0A7A38">out/</text>
+    <g font-size="12" text-anchor="middle">
+      <text x="656" y="166">filières_GHT_</text>
+      <text x="656" y="182">&lt;année&gt;.csv</text>
+      <text x="656" y="204">1 ligne par case</text>
+      <text x="656" y="220">agrégée</text>
+      <text x="656" y="242" fill="#B3261E" font-weight="bold">masquage à activer</text>
+    </g>
+
+    <!-- Sortie de la bulle -->
+    <path d="M656,254 L656,376 L174,376 L174,394" fill="none" stroke="#123880" stroke-width="2" marker-end="url(#fl)"/>
+    <text x="450" y="370" text-anchor="middle" font-size="12" fill="#5C6B7A">sortie de la bulle selon les règles ATIH</text>
+    <text x="748" y="402" text-anchor="end" font-size="13" font-weight="bold" fill="#5C6B7A">POSTE DE TRAVAIL</text>
+
+    <!-- Power BI -->
+    <rect x="22" y="396" width="304" height="156" rx="8" fill="#FFFFFF" stroke="#123880" stroke-width="2"/>
+    <text x="174" y="420" text-anchor="middle" font-size="15" font-weight="bold" fill="#123880">Power BI Desktop</text>
+    <g font-size="12">
+      <text x="36" y="444">GHT_Conso-Prod_filières.pbit</text>
+      <text x="36" y="466">paramètre Dossier_data : dossier des CSV</text>
+      <text x="36" y="488">3 Excel attendus sur U:\… (auteur)</text>
+      <text x="36" y="504" fill="#B3261E">  dont 2 absents des dépôts</text>
+      <text x="36" y="526">carte Azure Maps, contours GHT</text>
+      <text x="36" y="542" fill="#5C6B7A">  embarqués (GeoJSON, 4,9 Mo)</text>
+    </g>
+
+    <!-- Rapport -->
+    <line x1="326" y1="474" x2="356" y2="474" stroke="#123880" stroke-width="2" marker-end="url(#fl)"/>
+    <rect x="358" y="414" width="236" height="120" rx="8" fill="#EAF4FA" stroke="#1BA7D8" stroke-width="2"/>
+    <text x="476" y="438" text-anchor="middle" font-size="15" font-weight="bold" fill="#123880">Rapport</text>
+    <g font-size="12" text-anchor="middle">
+      <text x="476" y="460">carte des ES, matrice GHT → ES</text>
+      <text x="476" y="478">séjours et parts</text>
+      <text x="476" y="500">segments : année, âge, CAS,</text>
+      <text x="476" y="516">GP, filière, HC / HDJ / séances</text>
+    </g>
+  </g>
+</svg>
+</div>
+<p class="text-gris text-[13px]">Sources des briques : dépôts GitHub <code>pietrodito/atihdf</code> (package), <code>pietrodito/conso_prod_filieres</code> (projet RStudio, CSV publiés) et <code>pietrodito/consommation-production-par-ght-en-hdf</code> (modèle Power BI)</p>
+
+<!-- ===================================================================== -->
+<h2 id="depots">2. Les trois dépôts</h2>
+<div class="overflow-x-auto">
+<table>
+  <thead><tr><th class="w-[22%]">Dépôt</th><th class="w-[18%]">Rôle</th><th>Contenu</th><th class="w-[17%]">S'exécute</th></tr></thead>
+  <tbody>
+    <tr><td><b>consommation-production-par-ght-en-hdf</b><br><span class="text-gris">point d'entrée</span></td><td>Point d'entrée, visualisation</td>
+      <td><code>README.md</code> (renvoie vers les deux autres dépôts)<br><code>GHT_Conso-Prod_filières.pbit</code> (1,9 Mo) : modèle Power BI sans données<br><code>démo_rapport_pbix.png</code> : capture du rapport</td><td>Power BI Desktop, hors PDH</td></tr>
+    <tr><td><b>atihdf</b></td><td>Package R, boîte à outils PDH</td>
+      <td>41 fonctions exportées (connexion Teradata, nettoyage et typage des séjours MCO, territoires HDF, DMS, valorisation, taux de recours standardisés, projections INSEE), 23 jeux de données embarqués, 14 scripts d'exemple (<code>tests/PoC_*.R</code>)</td><td>RStudio de la PDH : archive zippée, téléversée, puis <i>Build › Install</i></td></tr>
+    <tr><td><b>conso_prod_filieres</b></td><td>Projet RStudio de l'outil</td>
+      <td><code>lanceur.R</code> + 4 scripts dans <code>R/</code> (00, 01, 10, 41)<br>2 référentiels Excel dans <code>data/</code><br>2 CSV de résultats dans <code>out/</code> : 2024 (107 398 lignes, 13 Mo) et 2025 (83 025 lignes, 10 Mo)</td><td>RStudio de la PDH, après installation d'<code>atihdf</code></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===================================================================== -->
+<h2 id="usage">3. À quoi ça sert</h2>
+<ul>
+  <li><b>Taux de fuite d'un territoire</b> : part des séjours des habitants d'un GHT réalisés hors de ce GHT, et vers quels GHT ou établissements</li>
+  <li><b>Attractivité</b> : origine des patients d'un établissement ou d'un GHT, y compris les patients domiciliés hors région</li>
+  <li><b>Parts d'activité des établissements</b> d'un territoire (publics et privés), pour une population donnée</li>
+  <li>Déclinaison <b>par filière</b> (définie par diagnostics), par groupe de planification ATIH, par âge (néonatologie, pédiatrie, adultes, plus de 75 ans), par mode HC / HDJ / séances</li>
+  <li>Comparaison 2024 / 2025 sur une même grille</li>
+  <li>Usages visés par le README : travaux des <b>DIM de territoire</b> (projet médical partagé, diagnostic territorial, échanges avec l'ARS)</li>
+</ul>
+
+<!-- ===================================================================== -->
+<h2 id="dependances">4. Dépendances</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 print:block">
+  <div class="carte border border-filet border-t-4 border-t-cyan rounded-lg px-4 py-3 print:mb-3">
+    <h3 class="mt-0">Environnement PDH</h3>
+    <ul>
+      <li>Accès à la PDH ATIH (« bulle de données ATIH Data Expert » dans le README) avec RStudio et Teradata</li>
+      <li><code>pRatihque</code> (package fourni par l'ATIH) : connexion LDAP, identifiant et mot de passe demandés à l'écran par <code>teradata()</code></li>
+      <li>Droit de créer des <b>tables temporaires</b> Teradata (<code>copy_to</code>, <code>compute</code>)</li>
+      <li>Packages R attendus déjà installés : tidyverse (dplyr, tidyr, stringr, purrr, readr, tibble), dbplyr, DBI, readxl, glue, rlang, cli, rstudioapi, scales ; usethis et jsonlite pour reconstruire les données. Le fichier <code>DESCRIPTION</code> n'en déclare aucun (gabarit RStudio non rempli, seul magrittr)</li>
+    </ul>
+  </div>
+  <div class="carte border border-filet border-t-4 border-t-navy rounded-lg px-4 py-3 print:mb-3">
+    <h3 class="mt-0">Tables PDH lues</h3>
+    <ul>
+      <li><code>PRD_VUE_MCO_&lt;année&gt;.FIXE</code> : RSA (<code>ident</code>, <code>finess</code>, <code>codegeo</code>, <code>ghm2</code>, <code>dp</code>, <code>dr</code>, <code>duree</code>, <code>nbseance</code>, <code>age</code>, <code>agejour</code>, <code>typ_sej</code>, <code>mois</code>…)</li>
+      <li><code>DIAG</code>, <code>UM</code>, <code>ACTE</code> de la même base : connectées pour les futures filières, inutilisées aujourd'hui</li>
+      <li><code>PRD_VUE_NOMGEN.CORRESP_CODE_COM_GEO_TS_POP</code> : code géographique PMSI ↔ communes, population</li>
+      <li><code>PRD_VUE_NOMPMSI.mco_rgp_ghm</code> et <code>mco_rgp_lib</code> : GHM → ASO, CAS, GP, DA et libellés, par version de classification</li>
+    </ul>
+  </div>
+  <div class="carte border border-filet border-t-4 border-t-vert rounded-lg px-4 py-3 print:mb-3">
+    <h3 class="mt-0">Référentiels Excel (fournis)</h3>
+    <ul>
+      <li><code>ght_codegeo.xlsx</code>, onglet <code>COM_GHT</code> : 3 818 communes → code GHT (14 GHT) ; un onglet <code>COM_TAS</code> (découpage TAS) n'est pas utilisé</li>
+      <li><code>raisons_sociales_juridiques_et_géographiques_GPS.xlsx</code> : 961 FINESS des HDF (767 DGF, 194 OQN), raison sociale courte, coordonnées GPS et GHT ; seules les 330 lignes « Site principal » sont retenues (136 DGF, 194 OQN)</li>
+    </ul>
+  </div>
+  <div class="carte border border-filet border-t-4 border-t-orange rounded-lg px-4 py-3 print:mb-3">
+    <h3 class="mt-0">Power BI (poste)</h3>
+    <ul>
+      <li>Power BI Desktop récent : modèle enregistré en 08/2026 (version 2.157), format de rapport « PBIR »</li>
+      <li>Visuel <b>Azure Maps</b> : fond de carte en ligne (accès depuis le réseau hospitalier à vérifier)</li>
+      <li>Paramètre <code>Dossier_data</code> : dossier des CSV, tous les <code>.csv</code> du dossier sont empilés</li>
+      <li>3 fichiers Excel lus sur <code>U:\DOS-SDP-INFO-MEDICALE-T2A\NOMENCLATURES\</code> (environnement de l'auteur) : <code>GHT\GHT.xlsx</code> (<b>absent des dépôts</b>), <code>FINESS\raisons_sociales_…_GPS.xlsx</code> (fourni), <code>FINESS\hack_carte_rs_vides.xlsx</code> (<b>absent des dépôts</b>)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================================================================== -->
+<h2 id="traitement">5. Ce que fait le traitement R</h2>
+<p><code>lanceur.R</code> boucle sur les années (<code>annee_debut = 2024</code>, <code>annee_fin = 2025</code>) et, pour chacune, exécute tous les scripts de <code>R/</code> par <b>ordre alphabétique</b> avec la variable globale <code>year</code>. Une erreur dans un script est affichée sans arrêter la boucle.</p>
+<div class="overflow-x-auto">
+<table>
+  <thead><tr><th class="w-[24%]">Étape (script)</th><th>Règle</th></tr></thead>
+  <tbody>
+    <tr><td><b>Connexion</b> (00)</td><td><code>teradata()</code> puis <code>ct(MCO, FIXE, DIAG, UM, ACTE, année = year)</code> : crée dans l'environnement R des liens vers <code>PRD_VUE_MCO_&lt;year&gt;.&lt;table&gt;</code> ; les calculs restent côté Teradata jusqu'au <code>collect()</code> final</td></tr>
+    <tr><td><b>Référentiels</b> (00)</td><td>Les deux fichiers Excel sont copiés en tables temporaires Teradata (<code>GHT_CODE_COM</code>, <code>GHT_FINESS</code>)</td></tr>
+    <tr><td><b>Code géo → GHT</b> (00)</td><td>Un code géographique PMSI regroupe plusieurs communes : il prend le GHT de sa <b>commune la plus peuplée</b> (population 2025, utilisée pour les deux années)</td></tr>
+    <tr><td><b>Champ</b> (00)</td><td>Séjours MCO de <code>FIXE</code> passés par <code>nettoie_séjours()</code> : exclusion des GHM d'erreur (<code>90</code>), des doublons de FINESS géographiques AP-HP / AP-HM / HCL, conservation des séjours <code>typ_sej</code> vide, A ou B et des GHS 9999<br>puis <b>patient domicilié en HDF</b> (code géo commençant par 02, 59, 60, 62, 80) <b>ou établissement en HDF</b> (FINESS commençant par ces codes)</td></tr>
+    <tr><td><b>Typage</b> (00)</td><td>Variables décrites au § 6 (âge, HC / HDJ / séances, CAS, GP, PIE, GHT de production et de consommation). Les sorties de janvier et février prennent la version de classification de l'année précédente (changement de version en mars)</td></tr>
+    <tr><td><b>Filières</b> (01, 10)</td><td>Toutes les lignes partent en « Non spécifique » ; chaque script de filière réaffecte les séjours qu'il repère (§ 7)</td></tr>
+    <tr><td><b>Agrégation</b> (41)</td><td>Comptage des RSA par année × FINESS × GHT de production × GHT de consommation × âge × PIE × nb_sejours × type d'hospitalisation × CAS × GP × filière, <code>collect()</code>, écriture de <code>out/filières_GHT_&lt;year&gt;.csv</code>. Le bloc de masquage qui suit est <b>commenté</b> (§ 8)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===================================================================== -->
+<h2 id="variables">6. Le fichier produit (CSV)</h2>
+<p>Séparateur virgule, UTF-8, une ligne par combinaison non vide. Unité : le <b>RSA</b> (colonne <code>n</code>). Le rapport Power BI calcule <code>nombre_séjours = nb_sejours × n</code> : un RSA de séances compte pour son nombre de séances.</p>
+<div class="overflow-x-auto">
+<table>
+  <thead><tr><th class="w-[19%]">Colonne</th><th>Définition</th><th class="w-[28%]">Modalités (CSV 2025)</th></tr></thead>
+  <tbody>
+    <tr><td><code>Année</code></td><td>Année de la base PMSI (année de sortie)</td><td>2024, 2025</td></tr>
+    <tr><td><code>finess</code></td><td>FINESS PMSI de l'établissement ; remplacé par « Hors région » si l'établissement est hors HDF</td><td>Le CSV 2024 garde le FINESS réel des établissements hors région (version antérieure du script)</td></tr>
+    <tr><td><code>ght_finess</code></td><td><b>GHT de production</b> : GHT du site principal dans le référentiel ; « Fuites » si l'établissement est hors HDF ou absent du référentiel</td><td>14 codes GHT + Fuites</td></tr>
+    <tr><td><code>ght_codegeo</code></td><td><b>GHT de consommation</b> : GHT du code géographique du patient ; « Attractivité » = domicile hors HDF ; « Imprécis » = code géo des HDF sans GHT</td><td>14 codes GHT + Attractivité + Imprécis</td></tr>
+    <tr><td><code>age</code></td><td>Néonat. : moins de 28 jours ; Pédiatrie : moins de 18 ans ; Gériatrie : plus de 75 ans ; Adulte : le reste</td><td>4 modalités</td></tr>
+    <tr><td><code>PIE</code></td><td>« PIE » si <code>typ_sej = 'B'</code> hors une liste de GHM de séances, sinon « NON PIE »</td><td>PIE : 6 963 RSA</td></tr>
+    <tr><td><code>nb_sejours</code></td><td>Nombre de séances pour les GHM de la CMD 28 (sauf 28Z19Z à 28Z22Z), sinon 1</td><td>1 à plusieurs dizaines</td></tr>
+    <tr><td><code>type_hospitalisation</code></td><td>Séances : CMD 28 ; HDJ : séjour <b>sans nuitée</b> (durée 0, quelle que soit l'unité) ; HC : au moins une nuitée</td><td>HDJ 1 117 580 · Séances 995 222 · HC 964 020 RSA</td></tr>
+    <tr><td><code>lib_cas</code></td><td>Catégorie d'activité de soins du GHM (référentiel ATIH)</td><td>Médecine, Chirurgie, Peu Invasif, Obstétrique, Nouveau-nés, Séances</td></tr>
+    <tr><td><code>lib_gp</code></td><td>Groupe de planification ATIH (libellés raccourcis pour 6 d'entre eux)</td><td>82 modalités</td></tr>
+    <tr><td><code>filière</code></td><td>Filière du dernier script de filière qui a retenu le séjour, sinon « Non spécifique »</td><td>14 modalités (§ 7)</td></tr>
+    <tr><td><code>n</code></td><td>Nombre de RSA de la case, <b>masqué</b> dans les CSV publiés (§ 8)</td><td>1 ou ≥ 12</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===================================================================== -->
+<h2 id="filieres">7. Filières</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 print:block">
+  <div>
+    <h3 class="mt-0">Dans le code publié : une seule filière</h3>
+    <ul>
+      <li><code>10-neurologie chronique.R</code> : « Neuro. Chroni., Démences » = DP <b>ou</b> DR (3 premiers caractères) dans G10-G37, G60-G73 ou F00-F03</li>
+      <li>Le mécanisme : <code>00</code> écrit la table <code>FIXE_FILIÈRES_PAIR</code>, <code>01</code> la recopie en <code>FIXE_FILIÈRES_IMPAIR</code>, la filière lit IMPAIR et réécrit PAIR (<code>rows_update</code> par <code>ident</code>), <code>41</code> agrège PAIR</li>
+      <li>Ajouter une filière = un script de recopie PAIR → IMPAIR puis un script de filière, numérotés entre 10 et 41</li>
+      <li>Un séjour repéré par deux filières garde <b>la dernière</b> : pas de double compte, mais l'ordre des scripts compte</li>
+    </ul>
+  </div>
+  <div>
+    <h3 class="mt-0">Dans les CSV publiés : 13 filières</h3>
+    <table class="max-w-[440px]">
+      <thead><tr><th>Filière (RSA 2025)</th><th class="text-right">RSA</th></tr></thead>
+      <tbody>
+        <tr><td>Obstétrique</td><td class="text-right tabular-nums">103 438</td></tr>
+        <tr><td>Hémato. non maligne</td><td class="text-right tabular-nums">78 109</td></tr>
+        <tr><td>Hémato. maligne</td><td class="text-right tabular-nums">75 908</td></tr>
+        <tr><td>Insuf. respi. chron.</td><td class="text-right tabular-nums">65 375</td></tr>
+        <tr><td>Infect. Respi.</td><td class="text-right tabular-nums">45 711</td></tr>
+        <tr><td>Neuro. Chroni., Démences</td><td class="text-right tabular-nums">34 125</td></tr>
+        <tr><td>Néonat.</td><td class="text-right tabular-nums">22 446</td></tr>
+        <tr><td>Diabéto.</td><td class="text-right tabular-nums">21 847</td></tr>
+        <tr><td>Soins palliatifs</td><td class="text-right tabular-nums">10 316</td></tr>
+        <tr><td>Thrombolies veineuses</td><td class="text-right tabular-nums">7 346</td></tr>
+        <tr><td>Endocrino.</td><td class="text-right tabular-nums">6 307</td></tr>
+        <tr><td>Épilepsie</td><td class="text-right tabular-nums">1 246</td></tr>
+        <tr><td>Digestif</td><td class="text-right tabular-nums">996</td></tr>
+        <tr><td class="text-gris">Non spécifique</td><td class="text-right tabular-nums text-gris">2 603 652</td></tr>
+      </tbody>
+    </table>
+    <p class="text-[13px] text-orange-texte font-bold">Les définitions des 12 autres filières ne sont pas encore publiées dans <code>conso_prod_filieres</code></p>
+  </div>
+</div>
+
+<!-- ===================================================================== -->
+<h2 id="secret">8. Secret statistique : le masquage</h2>
+<ul>
+  <li>Une sortie de la PDH ne doit pas comporter de petits effectifs (moins de 11, règle ATIH)</li>
+  <li>Le script <code>41</code> contient une fonction de masquage, <b>commentée dans le dépôt</b> : chaque case de moins de <i>S</i> RSA (<i>S</i> cherché entre 11 et 30) devient aléatoirement 1 ou <i>S</i>, avec des probabilités qui conservent le total attendu (graine 2026). Le seuil retenu est le premier pour lequel lire « 1 » ou « <i>S</i> » renseigne moins sur un vrai 1 que l'affichage « &lt;11 » de l'ATIH</li>
+  <li><b>Les CSV publiés sont masqués avec <i>S</i> = 12</b> : <code>n</code> vaut 1 (73 472 lignes en 2024, 50 267 en 2025) ou au moins 12, jamais 2 à 11</li>
+  <li>Le rapport affiche « &lt;13 séjours » en dessous de 13 et une bulle de taille 1 sur la carte</li>
+  <li><b>Tel que publié, le script écrit les effectifs réels</b> : réactiver le masquage avant toute sortie de la bulle. Conformité de cette méthode aux règles de sortie de l'ATIH : à confirmer (ce n'est pas une suppression des petites cases)</li>
+  <li>Conséquence : sur un total de GHT, l'aléa du masquage est estimé à 200 à 450 séjours (écart-type, moins de 0,4 %) ; une case fine (un établissement × un GP × une tranche d'âge) est approximative</li>
+</ul>
+
+<!-- ===================================================================== -->
+<h2 id="powerbi">9. Le rapport Power BI</h2>
+<div class="overflow-x-auto">
+<table>
+  <thead><tr><th class="w-[22%]">Élément</th><th>Contenu</th></tr></thead>
+  <tbody>
+    <tr><td><b>Tables</b></td><td><code>Données brutes</code> (CSV empilés), <code>GHT Production</code> (GHT.xlsx + « Fuites »), <code>GHT Consommation</code> (GHT.xlsx + « Attractivité », « Imprécis »), <code>ES</code> (sites principaux avec activité, coordonnées GPS), <code>hack_carte_rs_vide</code> (lignes ajoutées à <code>ES</code> pour l'affichage de la carte)</td></tr>
+    <tr><td><b>Relations</b></td><td><code>ght_finess</code> → GHT Production ; <code>ght_codegeo</code> → GHT Consommation (filtrage dans les deux sens) ; <code>finess</code> → <code>ES.finess_pmsi</code></td></tr>
+    <tr><td><b>Mesures DAX</b></td><td><code>Somme séjours</code> = Σ nombre_séjours ; <code>Part</code> = part dans la sélection ; <code>Séjours - texte</code> = « &lt;13 séjours » sous 13 ; <code>Séjours</code> = 1 sous 13 (taille des bulles) ; <code>Étiquette Top10</code> = nom des 10 premiers établissements</td></tr>
+    <tr><td><b>Page 1</b></td><td>Bandeaux de segments GHT Production (haut) et GHT Consommation ; segments Année, CAS, groupe de planification, filière, âge, HC / HDJ / séances ; carte des établissements (bulle = séjours) sur les contours des GHT ; matrice GHT de production › établissement avec séjours et parts ; carte « N séjours » ; histogrammes par GHT de production et de consommation</td></tr>
+    <tr><td><b>Page « Survol ES »</b></td><td>Info-bulle : nom de l'établissement et séjours</td></tr>
+    <tr><td><b>Lecture</b></td><td>Choisir un GHT de consommation → où ses habitants sont hospitalisés (fuites) ; choisir un GHT de production → d'où viennent ses patients (attractivité)</td></tr>
+    <tr><td><b>Écart avec la capture</b></td><td>La capture du README montre un curseur « TOP ES » et un treemap des groupes de planification, absents du modèle <code>.pbit</code></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===================================================================== -->
+<h2 id="ght">10. Les 14 GHT et l'exemple du Dunkerquois</h2>
+<p>« GHT » désigne ici le <b>territoire</b> du GHT : le référentiel rattache tous les établissements, publics et privés, à un code GHT (ex. pour 5903 : CH Dunkerque, CHRSO, Polyclinique de Grande-Synthe, Villette, Clinique de Saint-Omer, HAD Flandre Maritime, centres de dialyse…).</p>
+<div class="overflow-x-auto">
+<table class="table-fixed min-w-[640px]">
+  <thead><tr><th class="w-[7%]">Code</th><th class="w-[30%]">GHT (établissement support)</th><th class="text-right w-[12%]">Communes</th><th class="text-right w-[11%]">Sites principaux</th><th class="text-right w-[12%]">Production 2025</th><th class="text-right w-[15%]">Consommation 2025</th><th class="text-right w-[13%]">Soignés dans leur GHT</th></tr></thead>
+  <tbody>
+    <tr><td>0201</td><td>Aisne Nord Haute Somme (CH Saint-Quentin)</td><td class="text-right tabular-nums">661</td><td class="text-right tabular-nums">25</td><td class="text-right tabular-nums">167 951</td><td class="text-right tabular-nums">222 247</td><td class="text-right tabular-nums">69 %</td></tr>
+    <tr><td>0202</td><td>Sud-Axonais (CH Soissons)</td><td class="text-right tabular-nums">271</td><td class="text-right tabular-nums">14</td><td class="text-right tabular-nums">60 746</td><td class="text-right tabular-nums">90 629</td><td class="text-right tabular-nums">55 %</td></tr>
+    <tr><td>5901</td><td>Cambrésis (CH Cambrai)</td><td class="text-right tabular-nums">116</td><td class="text-right tabular-nums">16</td><td class="text-right tabular-nums">70 235</td><td class="text-right tabular-nums">90 602</td><td class="text-right tabular-nums">60 %</td></tr>
+    <tr><td>5902</td><td>Douaisis (CH Douai)</td><td class="text-right tabular-nums">64</td><td class="text-right tabular-nums">16</td><td class="text-right tabular-nums">94 236</td><td class="text-right tabular-nums">126 913</td><td class="text-right tabular-nums">55 %</td></tr>
+    <tr class="font-bold"><td class="bg-panneau!">5903</td><td class="bg-panneau!">Dunkerquois et Audomarois (CH Dunkerque)</td><td class="text-right tabular-nums bg-panneau!">137</td><td class="text-right tabular-nums bg-panneau!">16</td><td class="text-right tabular-nums bg-panneau!">161 461</td><td class="text-right tabular-nums bg-panneau!">199 365</td><td class="text-right tabular-nums bg-panneau!">70 %</td></tr>
+    <tr><td>5904</td><td>Hainaut (CH Valenciennes)</td><td class="text-right tabular-nums">233</td><td class="text-right tabular-nums">41</td><td class="text-right tabular-nums">328 221</td><td class="text-right tabular-nums">320 436</td><td class="text-right tabular-nums">86 %</td></tr>
+    <tr><td>5905</td><td>Métropole Flandre Intérieure (CHU Lille)</td><td class="text-right tabular-nums">178</td><td class="text-right tabular-nums">59</td><td class="text-right tabular-nums">893 489</td><td class="text-right tabular-nums">699 058</td><td class="text-right tabular-nums">95 %</td></tr>
+    <tr><td>6001</td><td>Oise Nord Est (CH Compiègne-Noyon)</td><td class="text-right tabular-nums">181</td><td class="text-right tabular-nums">9</td><td class="text-right tabular-nums">90 830</td><td class="text-right tabular-nums">97 712</td><td class="text-right tabular-nums">70 %</td></tr>
+    <tr><td>6002</td><td>Oise Ouest et Vexin (CH Beauvais)</td><td class="text-right tabular-nums">416</td><td class="text-right tabular-nums">15</td><td class="text-right tabular-nums">86 828</td><td class="text-right tabular-nums">175 771</td><td class="text-right tabular-nums">45 %</td></tr>
+    <tr><td>6003</td><td>Oise Sud (GHPSO)</td><td class="text-right tabular-nums">93</td><td class="text-right tabular-nums">21</td><td class="text-right tabular-nums">77 793</td><td class="text-right tabular-nums">92 700</td><td class="text-right tabular-nums">54 %</td></tr>
+    <tr><td>6201</td><td>Côte d'Opale (CH Boulogne)</td><td class="text-right tabular-nums">138</td><td class="text-right tabular-nums">12</td><td class="text-right tabular-nums">204 557</td><td class="text-right tabular-nums">180 302</td><td class="text-right tabular-nums">85 %</td></tr>
+    <tr><td>6202</td><td>Artois (CH Lens)</td><td class="text-right tabular-nums">154</td><td class="text-right tabular-nums">32</td><td class="text-right tabular-nums">270 303</td><td class="text-right tabular-nums">333 468</td><td class="text-right tabular-nums">68 %</td></tr>
+    <tr><td>6203</td><td>Artois-Ternois (CH Arras)</td><td class="text-right tabular-nums">358</td><td class="text-right tabular-nums">13</td><td class="text-right tabular-nums">99 157</td><td class="text-right tabular-nums">124 592</td><td class="text-right tabular-nums">58 %</td></tr>
+    <tr><td>8001</td><td>Somme Littoral Sud (CHU Amiens)</td><td class="text-right tabular-nums">818</td><td class="text-right tabular-nums">41</td><td class="text-right tabular-nums">364 444</td><td class="text-right tabular-nums">322 818</td><td class="text-right tabular-nums">84 %</td></tr>
+    <tr><td class="text-gris">—</td><td class="text-gris">Fuites (établissements hors HDF ou hors référentiel)</td><td></td><td></td><td class="text-right tabular-nums text-gris">170 219</td><td></td><td></td></tr>
+    <tr><td class="text-gris">—</td><td class="text-gris">Attractivité (patients domiciliés hors HDF)</td><td></td><td></td><td></td><td class="text-right tabular-nums text-gris">60 125</td><td></td></tr>
+    <tr><td class="text-gris">—</td><td class="text-gris">Imprécis (code géo des HDF sans GHT)</td><td></td><td></td><td></td><td class="text-right tabular-nums text-gris">3 732</td><td></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="text-gris text-[13px]">Séjours et séances MCO (Σ nb_sejours × n) calculés sur le CSV 2025 publié, donc masqué. Production = séjours réalisés dans les établissements du GHT ; consommation = séjours des habitants du GHT ; dernière colonne = part de la consommation réalisée dans un établissement du même GHT.</p>
+
+<h3>GHT du Dunkerquois et de l'Audomarois (5903)</h3>
+<div class="overflow-x-auto">
+<table class="md:w-[70%] print:w-[70%]">
+  <thead><tr><th>Indicateur</th><th class="text-right">2024</th><th class="text-right">2025</th></tr></thead>
+  <tbody>
+    <tr><td>Séjours et séances des habitants du GHT</td><td class="text-right tabular-nums">190 455</td><td class="text-right tabular-nums">199 365</td></tr>
+    <tr><td>… réalisés dans un établissement du GHT</td><td class="text-right tabular-nums">69,1 %</td><td class="text-right tabular-nums">69,7 %</td></tr>
+    <tr><td>… dans le GHT Métropole Flandre Intérieure</td><td class="text-right tabular-nums">15,6 %</td><td class="text-right tabular-nums">16,1 %</td></tr>
+    <tr><td>… dans le GHT Côte d'Opale</td><td class="text-right tabular-nums">10,2 %</td><td class="text-right tabular-nums">9,8 %</td></tr>
+    <tr><td>Séjours et séances des établissements du GHT</td><td class="text-right tabular-nums">152 998</td><td class="text-right tabular-nums">161 461</td></tr>
+    <tr><td>… pour des habitants du GHT</td><td class="text-right tabular-nums">86,0 %</td><td class="text-right tabular-nums">86,1 %</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===================================================================== -->
+<h2 id="mode">11. Mode d'emploi</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 print:block">
+  <div class="carte border border-filet border-t-4 border-t-vert rounded-lg px-4 py-3 print:mb-3">
+    <h3 class="mt-0">A. Lire les résultats publiés (sans PDH)</h3>
+    <ol>
+      <li>Télécharger <code>out/filières_GHT_2024.csv</code> et <code>_2025.csv</code> du dépôt <code>conso_prod_filieres</code> dans un dossier dédié</li>
+      <li>Ouvrir le <code>.pbit</code> dans Power BI Desktop, renseigner <code>Dossier_data</code> avec ce dossier</li>
+      <li>Créer <code>GHT.xlsx</code> (feuille « Sheet 1 », colonnes <code>CODE_GHT</code>, <code>GHT</code>, <code>finessJ_support</code>) avec les 14 codes et libellés courts du § 10</li>
+      <li>Créer <code>hack_carte_rs_vides.xlsx</code> avec les en-têtes du fichier GPS (contenu non publié ; vide à défaut), ou retirer l'étape « Hack » de la requête <code>ES</code></li>
+      <li>Repointer les 3 chemins <code>U:\…</code> (Transformer les données › Paramètres de la source de données), puis actualiser</li>
+    </ol>
+  </div>
+  <div class="carte border border-filet border-t-4 border-t-navy rounded-lg px-4 py-3 print:mb-3">
+    <h3 class="mt-0">B. Recalculer ou ajouter des filières (PDH)</h3>
+    <ol>
+      <li>Zipper le dépôt <code>atihdf</code>, le téléverser dans RStudio de la PDH, <i>Build › Install package</i></li>
+      <li>Téléverser le projet <code>conso_prod_filieres</code></li>
+      <li>Vérifier le nom des bases MCO visibles avec son profil d'accès : le package vise <code>PRD_VUE_MCO_&lt;année&gt;</code>, un profil d'établissement peut ne voir que <code>PRD_VUE_MCOBL_&lt;année&gt;</code> (constaté au CH de Dunkerque en 09/2026). Le cas échéant, écrire <code>ct(MCOBL, FIXE, DIAG, UM, ACTE, année = year)</code> dans <code>00-conso-prod.R</code></li>
+      <li>Ajuster les années dans <code>lanceur.R</code>, ajouter les scripts de filière (§ 7)</li>
+      <li><b>Décommenter le masquage</b> dans <code>41-aggrégation.R</code></li>
+      <li>Lancer <code>lanceur.R</code>, récupérer <code>out/*.csv</code> selon les règles de sortie ATIH</li>
+    </ol>
+<pre>DBI::dbGetQuery(connexion(), "
+  SELECT DISTINCT TRIM(DatabaseName) AS base
+  FROM DBC.TablesV
+  WHERE DatabaseName LIKE 'PRD_VUE_MCO%'")</pre>
+  </div>
+</div>
+
+<!-- ===================================================================== -->
+<h2 id="atihdf">12. Le reste du package atihdf</h2>
+<p>Fonctions utilisables pour d'autres travaux PDH, hors de l'outil conso / prod :</p>
+<div class="overflow-x-auto">
+<table>
+  <thead><tr><th class="w-[20%]">Famille</th><th>Fonctions</th></tr></thead>
+  <tbody>
+    <tr><td>Connexion</td><td><code>teradata()</code>, <code>connexion()</code>, <code>ct()</code> / <code>connexion_table()</code> (lien vers <code>PRD_VUE_&lt;schéma&gt;[_&lt;année&gt;].&lt;table&gt;</code>), <code>table_temporaire()</code>, <code>copier_vers_teradata()</code></td></tr>
+    <tr><td>Séjours MCO</td><td><code>nettoie_séjours()</code>, <code>caractérise_hospitalisation()</code>, <code>caractérise_séjour()</code>, <code>type_séjour_ajoute_lib()</code>, <code>caractérise_GHS()</code> (mono-UHCD, GHS intermédiaire / plein)</td></tr>
+    <tr><td>Établissements, territoires</td><td><code>caractérise_ES()</code> (CHU / CH / EBNL / Privé, ex-DGF / ex-OQN), <code>caractérise_région_ES()</code>, <code>filtre_HDF()</code>, <code>conso_prod_HDF()</code>, <code>filtre_ES_métropole()</code>, <code>caractérise_région_patient()</code>, <code>transforme_âge_en_classe()</code></td></tr>
+    <tr><td>DMS</td><td><code>exclusion_des_séjours_trop_longs()</code> (borne haute par GHM sur le log de la durée), <code>jointure_dms_théoriques()</code>, <code>ip_dms()</code>, <code>dms_par_aso()</code> ; DMS nationales 2015-2025 embarquées</td></tr>
+    <tr><td>Volumes et valorisation</td><td><code>compte_les_séjours_séances_et_journées()</code> (extrapolation à 12 mois de l'année en cours), <code>valo_base()</code> et <code>*_coef_pour_base()</code> : valorisation DGF exprimée aux tarifs d'une année de base (coefficients Ségur et charges en dur)</td></tr>
+    <tr><td>Taux de recours</td><td><code>territoires_patient()</code>, <code>population_codegeo()</code>, <code>population_toutes_zones()</code>, <code>standardisation_toutes_zones()</code>, <code>standardisation_focus_HDF()</code> (standardisation sur la population hexagonale) ; exemple : chirurgie bariatrique</td></tr>
+    <tr><td>Autres</td><td><code>projections_insee()</code> (projection par département, âge, sexe), <code>ACE()</code>, utilitaires (<code>pinf()</code>, <code>cp()</code>, <code>remplace_tous_les_NA()</code>, gestion des processus RStudio)</td></tr>
+    <tr><td>Données embarquées</td><td>Régions / départements, codes départements HDF, classes d'âge quinquennales, populations INSEE HDF et métropole 2015-2024, projections INSEE départementales HDF, GHS intermédiaires, DMS nationales, raisons sociales courtes</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="text-[13px] text-orange-texte">En cours : <code>ACE()</code> appelle des fonctions absentes du package (<code>raccourci_schéma</code>, <code>caractérise_ES_région</code>) ; <code>dms_par_aso()</code> appelle <code>nettoyage_séjours</code> (absente). Aucune n'est utilisée par l'outil conso / prod.</p>
+
+<!-- ===================================================================== -->
+<h2 id="vigilance">13. Limites et points de vigilance</h2>
+<ul>
+  <li><b>MCO seul</b> : ni SMR, ni HAD, ni psychiatrie, ni ACE</li>
+  <li>Unité = <b>RSA</b> ; le rapport compte les séances une par une : séjours et séances s'additionnent dans « séjours »</li>
+  <li>« HDJ » = séjour sans nuitée, pas l'activité des unités d'hôpital de jour</li>
+  <li>Code géo → GHT par la <b>commune la plus peuplée</b> : un code géo à cheval sur deux GHT est rattaché en bloc</li>
+  <li>« Fuites » regroupe les établissements hors HDF et ceux des HDF absents des 330 sites principaux du référentiel</li>
+  <li>Le GHT de production est un <b>territoire</b> (cliniques comprises), pas le périmètre juridique du GHT</li>
+  <li>Effectifs <b>masqués</b> dans les CSV publiés : ordres de grandeur pour les cases fines</li>
+  <li>Script publié <b>sans masquage actif</b> : à corriger avant toute sortie de données</li>
+  <li>Filières : 1 définition publiée sur 13 utilisées ; un séjour n'appartient qu'à une filière, la dernière appliquée</li>
+  <li>CSV 2024 et 2025 produits par deux versions du script (traitement du FINESS hors région)</li>
+  <li>Nom des bases <code>PRD_VUE_MCO_&lt;année&gt;</code> à vérifier selon le profil d'accès PDH</li>
+  <li>Modèle Power BI dépendant de deux fichiers Excel non fournis et d'Azure Maps (accès réseau)</li>
+</ul>
+
+</main>
+</body>
+</html>
